@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-import google.generativeai as genai
+import google.genai as genai
 from openai import OpenAI
 
 # Load variables from .env into the environment (no-op if already set)
