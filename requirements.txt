@@ -1,0 +1,12 @@
+aiohttp
+trafilatura
+nest_asyncio
+langgraph
+openai
+google-generativeai
+python-dotenv
+fastapi
+uvicorn
+pytesseract
+Pillow
+python-multipart
