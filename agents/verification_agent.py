@@ -1,6 +1,6 @@
 import re
 import json
-from config import openrouter_client
+from config import gemini_model
 
 
 def verification_agent(state: dict) -> dict:
@@ -38,12 +38,8 @@ Return ONLY a JSON object (no markdown, no preamble):
 }}
 """
         try:
-            resp = openrouter_client.chat.completions.create(
-                model="stepfun/step-3.5-flash:free",
-                messages=[{"role": "user", "content": prompt}],
-                extra_body={"reasoning": {"enabled": True}}
-            )
-            raw = resp.choices[0].message.content.strip()
+            response = gemini_model.generate_content(prompt)
+            raw = response.text.strip()
             raw = re.sub(r'^```[a-z]*\n?', '', raw).strip('`').strip()
             parsed = json.loads(raw)
         except Exception as e:

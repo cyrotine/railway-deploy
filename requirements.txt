@@ -1,8 +1,6 @@
 aiohttp
 trafilatura
-nest_asyncio
 langgraph
-openai
 google-genai
 python-dotenv
 fastapi

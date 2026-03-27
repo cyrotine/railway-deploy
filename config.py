@@ -3,22 +3,19 @@ import os
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from openai import OpenAI
 from types import SimpleNamespace
 
 # Load variables from .env into the environment (no-op if .env is missing,
 # which is normal on Railway where env vars are injected directly)
 load_dotenv()
 
-GEMINI_API_KEY     = os.getenv("GEMINI")
-TAVILY_API_KEY     = os.getenv("TAVILY_API_KEY")
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI")
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 # Validate required keys — fail fast at startup if any are missing
 missing = [name for name, val in {
     "GEMINI": GEMINI_API_KEY,
     "TAVILY_API_KEY": TAVILY_API_KEY,
-    "OPENROUTER_API_KEY": OPENROUTER_API_KEY,
 }.items() if not val]
 
 if missing:
@@ -52,8 +49,3 @@ class _GeminiModelWrapper:
 
 
 gemini_model = _GeminiModelWrapper()
-
-openrouter_client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=OPENROUTER_API_KEY,
-)
